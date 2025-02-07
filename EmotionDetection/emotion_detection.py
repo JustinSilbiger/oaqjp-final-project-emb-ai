@@ -36,5 +36,5 @@ def emotion_detector(text_to_analyse):
     }
 
 # Test function with sample text
-result = emotion_detector("I hate working long hours")
+result = emotion_detector("I love cookies")
 print(result)
