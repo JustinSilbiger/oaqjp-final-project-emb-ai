@@ -1,8 +1,13 @@
+# Justin's code for Final Project IBM
+
 import requests
 import json
 
 def emotion_detector(text_to_analyse):
-    """Analyzes text for emotions and returns emotion scores with the dominant emotion."""
+    """Analyzes text for emotions and returns emotion scores with the dominant emotion.
+    
+    If the user's input is blank (400 error), the function will return a dictionary with all values set to none.
+    """
     
     # API endpoint for emotion detection
     url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
@@ -24,6 +29,17 @@ def emotion_detector(text_to_analyse):
     
     # Identify the dominant emotion
     dominant_emotion = max(emotions, key=emotions.get)
+
+    if response.status_code == 400:
+        return {
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None
+        }
+    
 
     # Return structured emotion data
     return {
